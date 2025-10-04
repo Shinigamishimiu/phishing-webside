@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f7f8fc;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        nav {
+            background-color: #333;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #f0a500;
+        }
+
+        /* Hero Section */
+        #home {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        #home h1 {
+            font-size: 3.5em;
+            margin-bottom: 0.5em;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        #home p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            letter-spacing: 0.5px;  /* Added letter-spacing */
+            margin-bottom: 1.5em;  /* Added spacing between paragraphs */
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        #home button {
+            margin-top: 20px;
+            padding: 14px 40px;  /* Increased padding */
+            background-color: #f0a500;
+            border: none;
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s;
+        }
+
+        #home button:hover {
+            transform: translateY(-3px);
+            background-color: #333;
+        }
+
+        /* Sections */
+        section {
+            padding: 4em 2em;
+            max-width: 1100px;
+            margin: 60px auto;
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 1em;
+            color: #764ba2;
+        }
+
+        /* Skills Section */
+        #skills {
+            background-color: #f4f4f4;
+            padding: 3em 0;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .skill-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-card i {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #764ba2;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        /* About Section */
+        #about p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            letter-spacing: 0.5px; 
+            margin-bottom: 1.5em;  /* Added spacing */
+        }
+
+        /* Projects Section */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .project-card a {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #f0a500;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .project-card a:hover {
+            background-color: #333;
+        }
+
+        /* Contact Section */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        form input, form textarea {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        form input:focus, form textarea:focus {
+            border-color: #f0a500;
+        }
+
+        form button {
+            background-color: #764ba2;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5em;
+            background-color: #333;
+            color: white;
+        }
+
+        /* Scroll-to-Top Button */
+        #scrollTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #f0a500;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            transition: opacity 0.5s ease; /* Added smooth fade-in/out */
+        }
+
+        #scrollTop.show {
+            opacity: 1; /* Button fully visible when scrolled down */
+        }
+
+        #scrollTop:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Mobile Responsiveness */
+        @media screen and (max-width: 768px) {
+            nav ul {
+                flex-direction: column;  /* Stack the navigation links */
+                padding: 1em;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr; /* Stack the projects in a single column */
+            }
+
+            #home h1 {
+                font-size: 2.5em;  /* Reduce font size on smaller screens */
+            }
+
+            #home p {
+                font-size: 1.1em;  /* Adjust paragraph font size */
+            }
+
+            form input, form textarea {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <h1>Hi, I'm Marco_shimiu</h1>
+        <p>Web Developer | Creative Thinker | Ai Assistant</p>
+        <button onclick="location.href='#contact'">Get in Touch</button>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" data-aos="fade-up">
+        <h2>About Me</h2>
+        <p>I'm a passionate developer with a knack for creating beautiful and functional web experiences.</p>
+        <p>Creativity isn't just a skill for me—it's the foundation of everything I do. As a natural problem-solver, I take pride in looking beyond the obvious to uncover fresh, innovative solutions. Whether tackling complex challenges or crafting new ideas, I believe creativity is a dynamic force that fuels growth, collaboration, and forward-thinking strategies. I approach every project with curiosity and an open mind, constantly pushing the boundaries of what's possible. By blending diverse perspectives and staying adaptable, I turn abstract concepts into tangible outcomes that inspire, engage, and lead to real-world success.</p>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" data-aos="fade-up">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fab fa-html5"></i>
+                <h3>HTML</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-css3-alt"></i>
+                <h3>CSS</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-python"></i>
+                <h3>Python</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Web Developer</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Creative Thinker</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-robot"></i>
+                <h3>AI Assistant</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" data-aos="fade-up">
+        <h2>My Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>Project 1</h3>
+                <p>Cool project description goes here...</p>
+                <a href="#">View Project</a>
+            </div>
+            <div class="project-card">
+                <h3>Project 2</h3>
+                <p>Another project description...</p>
+                <a href="#">View Project</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" data-aos="fade-up">
+        <h2>Contact Me</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with ❤️ by Marco_shimiu</p>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">↑</button>
+
+    <!-- AOS Animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+        
+        // Scroll to Top Button
+        const scrollTopButton = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 200) {
+                scrollTopButton.classList.add('show');
+            } else {
+                scrollTopButton.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
